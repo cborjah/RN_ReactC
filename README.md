@@ -1,23 +1,26 @@
 #React Native w/ React Convention Tutorial
-## https://reactjs.co/react-native-convention/
 
-##react-native-redux-starter-kit:
+##Built using react-native-redux-starter-kit:
 https://github.com/mwp-io/react-native-redux-starter-kit
+https://reactjs.co/react-native-convention/
 
 ```
 Needed for this project:
 1) Xcode with iPhone simulator
 2) React-native client
-
 ```
-##Install all packages:
-npm i
-
-##To run the project just type in the main directory of the project:
-react-native run-ios
-
+Install all packages:
+```
+$ npm i
 ```
 
+To run the project just type in the main directory of the project:
+```
+$ react-native run-ios
+```
+
+## General client codebase structure
+```
 ── src                      # Application source code
    ├── main.js              # Application bootstrap and rendering
    │
@@ -44,5 +47,4 @@ react-native run-ios
    └── store                # Redux-specific pieces
        ├── createStore.js   # Create and instrument redux store
        └── reducers.js      # Reducer registry and injection
-
 ```

@@ -1,24 +1,27 @@
-import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 class Home extends Component {
 
-  onPress(){
-    Actions.counter();
+  onPress(sceneKey){
+    Actions[sceneKey]();
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}> React-Native Redux Starter Kit </Text>
-        <TouchableOpacity onPress={() => this.onPress()}>
+        <TouchableOpacity onPress={() => this.onPress('counter')}>
           <Text style={styles.buttonText}> COUNTER </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.onPress('dashboard')}>
+          <Text style={styles.buttonText}> DASHBOARD </Text>
         </TouchableOpacity>
         <Text style={styles.text}> Welcome! </Text>
         <Image style={styles.image} source={require('../assets/Duck.jpg')} />
       </View>
-    )
+    );
   }
 }
 
@@ -54,6 +57,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100
   }
-})
+});
 
-export default Home
+export default Home;

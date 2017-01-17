@@ -1,26 +1,17 @@
-const VISITS_COUNT = 'VISITS_COUNT';
+// Action Creator
+const DASHBOARD_VISITS_INCREMENT = 'DASHBOARD_VISITS_INCREMENT';
 
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch(increment(getState().dashboard))
-        resolve()
-      }, 400)
-    });
-  };
-};
-
-export const increment = (value = 1) => ({
-  type: VISITS_COUNT,
+export const visitsIncrement = (value = 1) => ({
+  type: DASHBOARD_VISITS_INCREMENT,
   value
 });
 
+// Reducer
 const initialState = 0;
 
 export default function dashboard(state = initialState, action) {
   switch (action.type) {
-    case VISITS_COUNT:
+    case DASHBOARD_VISITS_INCREMENT:
       return state + action.value;
     default:
       return state;

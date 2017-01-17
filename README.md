@@ -1,6 +1,6 @@
 #React Native w/ React Convention Tutorial
 
-##Built using react-native-redux-starter-kit:
+Built using react-native-redux-starter-kit:
 https://github.com/mwp-io/react-native-redux-starter-kit
 https://reactjs.co/react-native-convention/
 

@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Dashboard = (props) => {
-  const { value } = props;
+  const { value, list } = props;
+
+  const listJSX = list.map((item, i) => {
+    return <Text key={i}>{item.label}</Text>
+  });
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
         Dashboard visits: <Text style={styles.value}>{value}</Text>
       </Text>
+      {listJSX}
     </View>
   );
 };
@@ -30,6 +35,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'limegreen',
     textAlign: 'center',
+  },
+  item: {
+    fontSize: 20,
+    textAlign: 'center'
   }
 });
 

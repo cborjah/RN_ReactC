@@ -16,7 +16,18 @@ class DashboardContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  value: state.dashboard,
+  value: state.dashboard.visitsCount,
+  list: state.dashboard.list
 });
+
+// Alternate mapStateToProps
+/*
+function mapStateToProps(state) {
+  return {
+    value: state.dashboard.visitsCount,
+    list: state.dashboard.list
+  }
+}
+*/
 
 export default connect(mapStateToProps, { visitsIncrement })(DashboardContainer); // Promotes Dashboard component to a container

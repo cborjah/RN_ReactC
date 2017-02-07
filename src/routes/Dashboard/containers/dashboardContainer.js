@@ -1,16 +1,61 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { visitsIncrement } from '../modules/dashboardReducer';
+import { visitsIncrement, dashboardAddItem, dashboardEditItem } from '../modules/dashboardReducer';
 import Dashboard from '../../../components/Dashboard/dashboard';
 
 class DashboardContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inputValue: '',
+      editedItemIndex: null
+    }
+  }
+
   componentDidMount() {
     this.props.visitsIncrement();
   }
 
+  onChangeText(newText) {
+    console.log(newText);
+    this.setState({ inputValue: newText });
+    // console.log(this.state.inputValue)
+  }
+
+  submitAction() {
+    console.log("Submitted");
+    console.log(this.state.inputValue)
+    if(this.state.editedItemIndex === null) {
+      this.props.dashboardAddItem(this.state.inputValue);
+    } else {
+      this.props.dashboardEditItem(this.state.inputValue, this.state.editedItemIndex);
+    }
+
+    this.setState({
+      inputValue: '',
+      editedItemIndex: null
+    });
+  }
+
+  itemOnEdit(index) {
+    const item = this.props.list[index];
+    this.setState({
+      inputValue: item.label,
+      editedItemIndex: index
+    });
+  }
+
   render() {
+    const buttonText = (this.state.editedItemIndex === null) ? 'Add item' : 'Edit item';
     return (
-      <Dashboard {...this.props} />
+      <Dashboard
+        {...this.props}
+        onChangeText={(text) => this.onChangeText(text)}
+        submitAction={() => this.submitAction()}
+        itemOnEdit={(index) => this.itemOnEdit(index)}
+        textInput={this.state.inputValue}
+        buttonText={buttonText} />
     )
   }
 }
@@ -30,4 +75,4 @@ function mapStateToProps(state) {
 }
 */
 
-export default connect(mapStateToProps, { visitsIncrement })(DashboardContainer); // Promotes Dashboard component to a container
+export default connect(mapStateToProps, { visitsIncrement, dashboardAddItem, dashboardEditItem })(DashboardContainer); // Promotes Dashboard component to a container

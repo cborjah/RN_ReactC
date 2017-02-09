@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { visitsIncrement, dashboardAddItem, dashboardEditItem } from '../modules/dashboardReducer';
+import { loginAsync } from '../../../modules/session';
 import Dashboard from '../../../components/Dashboard/dashboard';
 
 class DashboardContainer extends Component {
@@ -62,7 +63,9 @@ class DashboardContainer extends Component {
 
 const mapStateToProps = (state) => ({
   value: state.dashboard.visitsCount,
-  list: state.dashboard.list
+  list: state.dashboard.list,
+  isNotLoggedIn: state.session.isNotLoggedIn,
+  loginToken: state.session.loginToken
 });
 
 // Alternate mapStateToProps
@@ -75,4 +78,4 @@ function mapStateToProps(state) {
 }
 */
 
-export default connect(mapStateToProps, { visitsIncrement, dashboardAddItem, dashboardEditItem })(DashboardContainer); // Promotes Dashboard component to a container
+export default connect(mapStateToProps, { visitsIncrement, dashboardAddItem, dashboardEditItem, loginAsync })(DashboardContainer); // Promotes Dashboard component to a container

@@ -46,11 +46,8 @@ export default function dashboard(state = initialState, action) {
         label: action.label,
         id: mockedId
       }
-      // state.list.push(newItem);
-      const updatedList = [...state.list];
-      updatedList.push(newItem);
-      // console.log(updatedList);
-      return { ...state, list: updatedList  }
+      state.list.push(newItem);
+      return { ...state, list: state.list  }
 
     case DASHBOARD_EDIT_ITEM:
       const newLabel = action.label;
